@@ -1,0 +1,9 @@
+function W=Q1b(x,y,n)
+x = [ones(size(x,1),1),x];
+matrixW = [1,1,1,1;1,1,1,-1;1,1,-1,1;1,-1,1,1;-1,1,1,1;-1,-1,1,1;-1,1,-1,1;-1,1,1,-1];
+matrixW = [matrixW;-matrixW];
+FirstTerm = x'*x;
+SecondTerm = -x'*y;
+b = (n)*ones(16,1);
+options = optimset('Display','off');
+W = quadprog(FirstTerm,SecondTerm,matrixW,b,[],[],[],[],[],options);
